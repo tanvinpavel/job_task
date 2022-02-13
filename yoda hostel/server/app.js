@@ -17,6 +17,10 @@ mongoUtil.connectToServer( function( err, client ){
     if (err) {
         console.log(err);
     }else{
+        app.get('/', (req, res) => {
+            res.send('hi this is yooda hostel');
+        });
+
         const mealsRoute = require('./Routes/mealsRoute');
         const studentRoute = require('./Routes/studentRoute');
 
@@ -37,8 +41,8 @@ const errorHandlerMiddleware = (err, req, res, next) => {
 app.use(errorHandlerMiddleware);
 
 //port variable
-const PORT = process.env.DEVELOPMENT_PORT || 5000;
+const port = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
-    console.log('Server is running in port ', PORT);
+app.listen(port, () => {
+    console.log('Server is running in port ' + port);
 })
